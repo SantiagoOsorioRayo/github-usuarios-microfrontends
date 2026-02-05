@@ -14,7 +14,7 @@ export default async function HomePage() {
 
   return (
     <main>
-      <h1>Usuarios de GitHub</h1>
+      <h1 className="titulo-listado">Usuarios de GitHub</h1>
       <ListadoUsuarios usuarios={usuarios} />
     </main>
   );

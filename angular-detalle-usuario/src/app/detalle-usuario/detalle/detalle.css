@@ -1,0 +1,41 @@
+.detalle-card {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.avatar-detalle img {
+  width: 120px;
+  height: 120px;
+}
+
+.titulo-detalle {
+  margin: 12px 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.texto-detalle {
+  margin: 12px 0 24px;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 80px;
+  opacity: 0.7;
+}
+
+
+.btn-back {
+  margin-bottom: 16px;
+  background-color: rgba(13, 110, 253, 0.08);
+  color: var(--primary);
+}
+
+.btn-back:hover {
+  background-color: rgba(13, 110, 253, 0.15);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}

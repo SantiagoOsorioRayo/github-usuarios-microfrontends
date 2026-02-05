@@ -1,14 +1,33 @@
-<div *ngIf="username$ | async as username">
-  <a href="http://localhost:4200/detalle/{{ username }}">
+<div *ngIf="username$ | async as username" class="page-container">
+
+  <a class="btn btn-back"
+     href="http://localhost:4200/detalle/{{ username }}">
     ← Volver al detalle
   </a>
-  <h2>Seguidores de {{ username }}</h2>
 
-  <ul *ngIf="seguidores$ | async as seguidores">
-    <li *ngFor="let seguidor of seguidores">
-      <img [src]="seguidor.avatar_url" width="40" />
-      {{ seguidor.login }}
-    </li>
-  </ul>
+  <h2 class="titulo-listado">
+    Seguidores de {{ username }}
+  </h2>
+
+  <ng-container *ngIf="seguidores$ | async as seguidores; else loading">
+    <ul *ngIf="seguidores.length > 0; else sinSeguidores" class="lista-seguidores">
+      <li *ngFor="let seguidor of seguidores" class="seguidor-item">
+        <img [src]="seguidor.avatar_url" class="avatar-seguidor" />
+        <span>{{ seguidor.login }}</span>
+      </li>
+    </ul>
+  </ng-container>
+
+  <ng-template #sinSeguidores>
+    <p style="text-align:center; margin-top: 16px; color: var(--foreground);">
+      Este usuario no tiene seguidores
+    </p>
+  </ng-template>
+
+  <ng-template #loading>
+    <p style="text-align:center; margin-top:16px; color: var(--foreground);">
+      Cargando seguidores...
+    </p>
+  </ng-template>
 
 </div>

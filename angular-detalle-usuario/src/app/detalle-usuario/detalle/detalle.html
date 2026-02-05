@@ -1,22 +1,38 @@
-<div *ngIf="user$ | async as user; else loading">
-  <a (click)="volverUsuarios()" style="cursor:pointer"  *ngIf="mostrarVolver">
-    ← Volver a Usuarios
-  </a>
-  <br>
-  <br>
-  <img [src]="user.avatar_url" width="120" />
-  <h2>{{ user.login }}</h2>
+<div class="page-container">
 
-  <p>
-    Seguidores:
-    <strong>{{ user.followers | seguidores }}</strong>
-  </p>
+  <ng-container *ngIf="user$ | async as user; else usuarioNoExiste">
 
-  <a href="http://localhost:4201/seguidores/{{user.login}}">
-    Ver seguidores
-  </a>
+    <!-- Usuario existe -->
+    <a (click)="volverUsuarios()" class="btn btn-back">
+      ← Volver a Usuarios
+    </a>
+
+    <div class="card detalle-card">
+      <div class="avatar avatar-detalle">
+        <img [src]="user.avatar_url" />
+      </div>
+
+      <h2 class="titulo-detalle">{{ user.login }}</h2>
+
+      <p class="texto-detalle">
+        Seguidores: <strong>{{ user.followers | seguidores }}</strong>
+      </p>
+
+      <a href="http://localhost:4201/seguidores/{{user.login}}" class="btn btn-primary">
+        Ver seguidores
+      </a>
+    </div>
+
+  </ng-container>
+
 </div>
 
-<ng-template #loading>
-  <p>Cargando usuario...</p>
+<!-- Usuario no encontrado -->
+<ng-template #usuarioNoExiste>
+  <div class="page-container">
+    <p class="sin-seguidores">Usuario no encontrado</p>
+    <button class="btn btn-back" (click)="volverUsuarios()">
+      ← Volver a la lista de usuarios
+    </button>
+  </div>
 </ng-template>

@@ -1,1 +1,122 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #0d6efd;
+  --primary-hover: #0b5ed7;
+  --border: #e5e7eb;
+  --card-bg: #ffffff;
+  --page-bg-start: #f5f7fb;
+  --page-bg-end: #eef2f7;
+  --font-base: Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #121212;
+    --foreground: #ededed;
+    --border: #2a2a2a;
+    --card-bg: #1a1a1a;
+    --page-bg-start: #0a0a0a;
+    --page-bg-end: #121212;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--font-base);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(
+    180deg,
+    var(--page-bg-start),
+    var(--page-bg-end)
+  );
+  color: var(--foreground);
+}
+
+.page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.avatar img {
+  border-radius: 50%;
+  background-color: var(--background);
+  padding: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition:
+    background-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.1s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-link {
+  background: none;
+  color: var(--primary);
+  padding: 0;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 500;
+  background-color: rgba(13, 110, 253, 0.08);
+  color: var(--primary);
+}
+
+.btn-back:hover {
+  background-color: rgba(13, 110, 253, 0.15);
+}

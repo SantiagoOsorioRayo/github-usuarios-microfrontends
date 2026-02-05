@@ -5,6 +5,7 @@ import { GithubService } from '../../servicios/github.service';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { SeguidoresPipe } from '../../pipes/seguidores-pipe';
 import { GithubUsuario } from '../model/github-usuario.modelo';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-detalle',
@@ -18,34 +19,42 @@ export class Detalle {
   private route = inject(ActivatedRoute);
   private githubService = inject(GithubService);
 
-  user$!: Observable<GithubUsuario>;
-  mostrarVolver: boolean = false;
+  user$!: Observable<GithubUsuario | null>;
+  cargando = true;
 
   ngOnInit(): void {
-    this.checkNextActivo();
     this.user$ = this.route.paramMap.pipe(
       map(params => params.get('username')),
-      filter((username: any) => !!username),
-      switchMap(username =>
-        this.githubService.obtenerDetalleUsuario(username!)
-      )
+      switchMap(username => {
+        if (!username) return of(null);
+        return this.githubService.obtenerDetalleUsuario(username).pipe(
+          catchError(() => of(null))
+        );
+      })
     );
   }
 
-  checkNextActivo() {
-    const img = new Image();
-    img.src = 'http://localhost:3000/favicon.ico?' + Date.now();
 
-    img.onload = () => {
-      this.mostrarVolver = true;
-    };
+  async volverUsuarios() {
+    const timeout = 3000;
+    const controller = new AbortController();
+    const signal = controller.signal;
+    const timer = setTimeout(() => controller.abort(), timeout);
 
-    img.onerror = () => {
-      this.mostrarVolver = false;
-    };
+    try {
+      const res = await fetch('http://localhost:3000/api', { method: 'GET', signal });
+      clearTimeout(timer);
+      if (res.ok) {
+        window.location.assign('http://localhost:3000');
+      } else {
+        alert('Next respondió mal, recargando...');
+        window.location.reload();
+      }
+    } catch (err) {
+      clearTimeout(timer);
+      alert('No se pudo conectar a Next o tardó demasiado, recargando...');
+      window.location.reload();
+    }
   }
 
-  volverUsuarios() {
-    window.location.assign('http://localhost:3000');
-  }
 }

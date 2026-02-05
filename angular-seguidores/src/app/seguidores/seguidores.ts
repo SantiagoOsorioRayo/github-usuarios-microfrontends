@@ -14,7 +14,7 @@ export class Seguidores {
   private route = inject(ActivatedRoute);
   private service = inject(FollowersService);
 
-username$!: Observable<string>;
+  username$!: Observable<string>;
   seguidores$!: Observable<any[]>;
 
   ngOnInit(): void {
@@ -25,7 +25,8 @@ username$!: Observable<string>;
     this.seguidores$ = this.username$.pipe(
       switchMap(username =>
         this.service.obtenerSeguidores(username)
-      )
+      ),
+      map(seguidores => seguidores ?? [])
     );
   }
 }

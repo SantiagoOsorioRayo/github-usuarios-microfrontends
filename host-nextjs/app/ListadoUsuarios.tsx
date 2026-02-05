@@ -21,15 +21,17 @@ export default function ListadoUsuarios({ usuarios }: Props) {
     <ul className="lista-usuarios">
       {usuarios.map((usuario) => (
         <li key={usuario.id} className="tarjeta-usuario">
+          <div className='imagen'>
           <img src={usuario.avatar_url} width={80} />
-          <p>{usuario.login}</p>
+          </div>
+          <p className="titulo">{usuario.login}</p>
 
-          <a
+          <a className="btn btn-primary"
             onClick={() => {
               setUsuarioSeleccionado(usuario);
               window.location.href = `http://localhost:4200/detalle/${usuario.login}`;
             }}
-            style={{ cursor: 'pointer', color: 'blue' }}
+            style={{ cursor: 'pointer', color: 'white' }}
           >
             Ver detalle
           </a>

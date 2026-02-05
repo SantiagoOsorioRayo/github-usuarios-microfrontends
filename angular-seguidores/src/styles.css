@@ -1,1 +1,103 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===============================
+   DESIGN SYSTEM (GLOBAL)
+================================ */
+
+/* Variables */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #0d6efd;
+  --primary-hover: #0b5ed7;
+  --border: #e5e7eb;
+  --font-base: Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --border: #374151;
+  }
+}
+
+/* Base */
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Contenedor */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* Títulos */
+.titulo-listado {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition:
+    background-color 0.15s ease,
+    transform 0.1s ease;
+}
+
+.btn-back {
+  margin-bottom: 16px;
+  background-color: rgba(13, 110, 253, 0.08);
+  color: var(--primary);
+}
+
+.btn-back:hover {
+  background-color: rgba(13, 110, 253, 0.15);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* Listas */
+.lista-seguidores {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+/* Card seguidor */
+.seguidor-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--background);
+}
+
+/* Avatar */
+.avatar-seguidor {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
