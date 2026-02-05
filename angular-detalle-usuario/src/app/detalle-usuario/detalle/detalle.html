@@ -1,0 +1,22 @@
+<div *ngIf="user$ | async as user; else loading">
+  <a (click)="volverUsuarios()" style="cursor:pointer"  *ngIf="mostrarVolver">
+    ← Volver a Usuarios
+  </a>
+  <br>
+  <br>
+  <img [src]="user.avatar_url" width="120" />
+  <h2>{{ user.login }}</h2>
+
+  <p>
+    Seguidores:
+    <strong>{{ user.followers | seguidores }}</strong>
+  </p>
+
+  <a href="http://localhost:4201/seguidores/{{user.login}}">
+    Ver seguidores
+  </a>
+</div>
+
+<ng-template #loading>
+  <p>Cargando usuario...</p>
+</ng-template>

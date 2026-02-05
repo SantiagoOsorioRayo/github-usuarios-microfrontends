@@ -1,0 +1,14 @@
+<div *ngIf="username$ | async as username">
+  <a href="http://localhost:4200/detalle/{{ username }}">
+    ← Volver al detalle
+  </a>
+  <h2>Seguidores de {{ username }}</h2>
+
+  <ul *ngIf="seguidores$ | async as seguidores">
+    <li *ngFor="let seguidor of seguidores">
+      <img [src]="seguidor.avatar_url" width="40" />
+      {{ seguidor.login }}
+    </li>
+  </ul>
+
+</div>
